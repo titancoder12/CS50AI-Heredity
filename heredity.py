@@ -154,6 +154,8 @@ def joint_probability(people, one_gene, two_genes, have_trait):
             else:
                 if (mother in one_gene) or (mother in two_genes):
                     probabilities.append(PROBS["mutation"])
+                if mother in two_genes:
+                    probabilities.append(PROBS["mutation"])
                 if (father in one_gene) or (father in two_genes):
                     probabilities.append(PROBS["mutation"])
                 if (mother not in one_gene) and (mother not in two_genes):
@@ -166,28 +168,36 @@ def joint_probability(people, one_gene, two_genes, have_trait):
             if (mother == None) and (father == None):
                 probabilities.append(PROBS["gene"][1])
             else:
+                if (mother not in one_gene) and (mother not in two_genes):
+                    probabilities.append(PROBS["mutation"])
+
                 if (mother in one_gene):
-                    probabilities.append(1 - PROBS["mutation"])
+                    probabilities.append(0.5 * (1 - PROBS["mutation"]))
                 if (father in one_gene):
-                    probabilities.append(1 - PROBS["mutation"])
-                if (mother not in one_gene):
-                    probabilities.append(PROBS["mutation"])
-                if (father not in one_gene):
-                    probabilities.append(PROBS["mutation"])
+                    probabilities.append(0.5* (1 - PROBS["mutation"]))
+                
+                if (mother in two_genes):
+                    probabilities.append((1 - PROBS["mutation"]))
+                if (father in two_genes):
+                    probabilities.append((1 - PROBS["mutation"]))
         
         # PROBS for two genes
         if person in two_genes:
             if (people[person]["mother"] == None) and (people[person]["father"] == None):
                 probabilities.append(PROBS["gene"][2])
             else:
+                if (mother not in one_gene) and (mother not in two_genes):
+                    probabilities.append(PROBS["mutation"])
+                    
+                if (mother in one_gene):
+                    probabilities.append(0.5 * (1 - PROBS["mutation"]))
+                if (father in one_gene):
+                    probabilities.append(0.5* (1 - PROBS["mutation"]))
+                
                 if (mother in two_genes):
-                    probabilities.append(1 - PROBS["mutation"])
+                    probabilities.append((1 - PROBS["mutation"]))
                 if (father in two_genes):
-                    probabilities.append(1 - PROBS["mutation"])
-                if (mother not in two_genes):
-                    probabilities.append(PROBS["mutation"])
-                if (father not in two_genes):
-                    probabilities.append(PROBS["mutation"])
+                    probabilities.append((1 - PROBS["mutation"]))
         
         # PROBS for no trait
         if person not in have_trait:
