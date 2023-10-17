@@ -175,15 +175,12 @@ def joint_probability(people, one_gene, two_genes, have_trait):
                 probabilities.append(PROBS["gene"][2])
         else:
             if person in no_genes:
-                print(f"{person} in no_gene")
                 probabilities.append((1 - motherprob) * (1 - fatherprob))
 
             if person in one_gene:
-                print(f"{person} in one_gene")
                 probabilities.append(((1 - motherprob) * (fatherprob)) + ((1-fatherprob) * (motherprob)))
             
             if person in two_genes:
-                print(f"{person} in two_gene")
                 probabilities.append((motherprob) * (fatherprob))
         
         # PROBS for no trait
