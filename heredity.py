@@ -251,7 +251,6 @@ def normalize(probabilities):
         probabilities[name]["gene"][1] = person["gene"][1] / total_genes
         probabilities[name]["gene"][2] = person["gene"][2] / total_genes
         
-        #print(probabilities[name]["gene"])
 
         # Normalize traits
         total_traits = sum([person["trait"][True], person["trait"][False]])
@@ -259,17 +258,6 @@ def normalize(probabilities):
         probabilities[name]["trait"][True] = person["trait"][True] / total_traits
         probabilities[name]["trait"][False] = person["trait"][False] / total_traits
 
-        #print(probabilities)
-        #print("total traits:")
-        #print(total_traits)
-
-    for person in probabilities:
-        p = probabilities[person]
-        print("gene:")
-        print(sum([p["gene"][0], p["gene"][1], p["gene"][2]]))
-
-        print("trait:")
-        print(sum([p["trait"][True], p["trait"][False]]))
 
 
 
