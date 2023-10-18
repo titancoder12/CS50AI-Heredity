@@ -151,18 +151,18 @@ def joint_probability(people, one_gene, two_genes, have_trait):
         father = people[person]["father"]
         motherprob = 0
         fatherprob = 0
-        
+
         if mother in no_genes:
             motherprob = PROBS["mutation"]
         if mother in one_gene:
-            motherprob = 0.5 - PROBS["mutation"]
-        if mother in two_genes:
+            motherprob = 0.5
+        if mother in two_genes: 
             motherprob = 1 - PROBS["mutation"]
         
         if father in no_genes:
             fatherprob = PROBS["mutation"]
         if father in one_gene:
-            fatherprob = 0.5 - PROBS["mutation"]
+            fatherprob = 0.5 #- PROBS["mutation"]
         if father in two_genes:
             fatherprob = 1 - PROBS["mutation"]
 
@@ -265,11 +265,11 @@ def normalize(probabilities):
 
     for person in probabilities:
         p = probabilities[person]
-        #print("gene:")
-        #print(sum([p["gene"][0], p["gene"][1], p["gene"][2]]))
+        print("gene:")
+        print(sum([p["gene"][0], p["gene"][1], p["gene"][2]]))
 
-        #print("trait:")
-        #print(sum([p["trait"][True], p["trait"][False]]))
+        print("trait:")
+        print(sum([p["trait"][True], p["trait"][False]]))
 
 
 
